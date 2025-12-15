@@ -1,32 +1,69 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:property name="base_length" value="0.24" />
-  <xacro:property name="base_width" value="0.275" />
-  <xacro:property name="base_height" value="0.003" />
-  <xacro:property name="base_mass" value="1" />
-  <!-- set empty on the wheel_mesh_file to use geometry instead of mesh -->
-  <xacro:property name="base_mesh_file" value="" />
-  <!-- <xacro:property name="base_mesh_file" value="file://$(find linorobot2_description)/meshes/base.dae" /> -->
 
-  <xacro:property name="wheel_radius" value="0.045" />
-  <xacro:property name="wheel_width" value="0.01" />
-  <xacro:property name="wheel_pos_x" value="0.0" />
-  <xacro:property name="wheel_pos_y" value="0.13" />
-  <xacro:property name="wheel_pos_z" value="-0.03" />
-  <xacro:property name="wheel_mass" value=".1" />
-  <xacro:property name="wheel_torque" value="20" />
-  <xacro:property name="front_caster_wheel" value="true" />
-  <xacro:property name="rear_caster_wheel" value="true" />
+  <!-- ========================= -->
+  <!-- REAL ROBOT DIMENSIONS     -->
+  <!-- ========================= -->
 
-  <!-- set empty on the wheel_mesh_file to use geometry instead of mesh -->
-  <xacro:property name="wheel_mesh_file" value="" />
-  <!-- <xacro:property name="wheel_mesh_file" value="file://$(find linorobot2_description)/meshes/tire.dae" /> -->
-  
+  <!-- BASE / CHASSIS -->
+  <xacro:property name="base_length" value="0.365"/>   <!-- 36.5 cm -->
+  <xacro:property name="base_width"  value="0.305"/>   <!-- 30.5 cm -->
+  <xacro:property name="base_height" value="0.183"/>   <!-- 18.3 cm -->
+  <xacro:property name="base_mass"   value="1.0"/>
+
+  <!-- Empty = primitive geometry -->
+  <xacro:property name="base_mesh_file" value=""/>
+
+  <!-- ========================= -->
+  <!-- MAIN DRIVE WHEELS         -->
+  <!-- ========================= -->
+
+  <!-- Diameter: 14.5 cm -->
+  <xacro:property name="wheel_radius" value="0.0725"/>
+  <xacro:property name="wheel_width"  value="0.028"/>
+
+  <!-- Wheels centered on robot -->
+  <xacro:property name="wheel_pos_x" value="0.0"/>
+
+  <!-- Center-to-center distance = 27.2 cm -->
+  <xacro:property name="wheel_pos_y" value="0.136"/>
+
+  <!-- Touching the ground -->
+  <xacro:property name="wheel_pos_z" value="-0.0725"/>
+
+  <xacro:property name="wheel_mass"   value="0.1"/>
+  <xacro:property name="wheel_torque" value="20"/>
+
+  <xacro:property name="wheel_mesh_file" value=""/>
+
+  <!-- ========================= -->
+  <!-- CASTER WHEEL              -->
+  <!-- ========================= -->
+
+  <xacro:property name="front_caster_wheel" value="false"/>
+  <xacro:property name="rear_caster_wheel"  value="true"/>
+
+  <!-- ========================= -->
+  <!-- LIDAR                     -->
+  <!-- ========================= -->
+
+  <!-- Lidar: 10.9 cm from front
+       Robot half length = 18.25 cm
+       => 18.25 - 10.9 = 7.35 cm -->
+
+  <!-- Height: wheel radius (7.25 cm)
+       + lidar offset (8.8 cm) = 16.05 cm -->
+
   <xacro:property name="laser_pose">
-    <origin xyz="0.12 0 0.33" rpy="0 0 0"/>
+    <origin xyz="0.0735 0 0.1605" rpy="0 0 0"/>
   </xacro:property>
+
+  <!-- ========================= -->
+  <!-- DEPTH SENSOR (OPTIONAL)   -->
+  <!-- ========================= -->
 
   <xacro:property name="depth_sensor_pose">
-    <origin xyz="0.14 0.0 0.045" rpy="0 0 0"/>
+    <origin xyz="0.10 0.0 0.12" rpy="0 0 0"/>
   </xacro:property>
+
 </robot>
